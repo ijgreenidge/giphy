@@ -1,35 +1,30 @@
 $(document).ready(function() {
     var searchTerm;
-    $("#submit").click(function() {
+    $("#go").click(function() {
 
         searchTerm = $("#input").val();
         //console.log(searchTerm);
 
         $.getJSON(
-            "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=dc6zaTOxFJmzC",
+            "http://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&units=imperial&appid=bdba1a0a44393ebb01ab7f3d1e43b732",
             function(response) {
-                for (var i = 0; i < response.data.length; i++) {
-                    $("#gif").append("<img src = " + response.data[i].images.fixed_height.url + ">")
-
-                    // function(searchRestart) {
-                    //     $("#gif").html("")
-
-
-                    // }
-
-                }
+              //console.log(response.main.temp)
+                
+                  
+              $("#weather-results").append("The temperature in" + " " + searchTerm + " "+ "is" + " " + response.main.temp)
+              // $("#weather-results").append("The temperature in" + " " + searchTerm + " "+ "is" + " " + response.main.temp)
+                   //console.log(response)
+                        
 
 
 
-            }
-        );
-    });
+                
 
 
-    $("#reset").click(function() {
 
-        $("#gif").html("");
-        $("#input").val("");
+            });
 
     });
+
+
 });
